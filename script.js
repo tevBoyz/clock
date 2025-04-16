@@ -8,7 +8,9 @@ var minD = document.querySelector(".M")
 var secD = document.querySelector(".S")
 var ampmD = document.querySelector(".ampm")
 
-const tick = document.getElementById('tick');
+const audio = new Audio('/assets/tick.mp3');
+audio.preload = 'auto';
+audio.load();
 
 function updateClock(){
     var currentTime = new Date();
@@ -50,15 +52,12 @@ function updateClock(){
     minD.innerHTML = m + ": ";
     secD.innerHTML = s;
     ampmD.innerHTML = ampm
-    playTick();
-}
-
-
-function playTick(){
-    tick.play();
+    audio.play();
 }
 
 //Update the clock every 1000ms / 1sec
 setInterval(updateClock, 1000);
 
-updateClock();
+document.addEventListener('DOMContentLoaded', () => {
+    updateClock();
+})
